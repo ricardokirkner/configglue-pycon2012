@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<!--
+  Based on: Google HTML5 slide template
+  (http://code.google.com/p/html5slides/)
+
+  Author: Ricardo Kirkner
+-->
+
+<html>
+  <head>
+    <title>configglue - lightning talk | PyCon US 2012
+        - March 06-11| by Ricardo Kirkner</title>
+
+    <meta charset='utf-8'>
+    <meta name="author" content="Ricardo Kirkner" />
+    <meta name="description" content="configglue - lightning talk" />
+    <script src='slides.js'></script>
+  </head>
+
+  <style>
+    /* Your individual styles here, or just use inline styles if that’s
+       what you want. */
+    .current {
+        opacity: 1;
+    }
+    .past, .next {
+        opacity: 0.2;
+    }
+    .far-past, .far-next {
+        opacity: 0;
+    }
+
+    div#contact {
+        position: absolute;
+        top: 350px;
+        left: 300px;
+    }
+    dt {
+        float: left;
+        clear: left;
+        width: 100px;
+    }
+    dd {
+        margin: 0 0 0 110px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular'>
+
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+
+      <article>
+        <h1>
+            configglue
+        </h1>
+        <p>
+          Ricardo Kirkner
+          <br>
+          PyCon US 2012
+        </p>
+      </article>
+
+      <article class="smaller">
+        <h3>
+          configglue?
+        </h3>
+        <q>
+          configglue is a library that glues together Python's
+          <strong>OptionParser</strong> and <strong>ConfigParser</strong>, so
+          that you don't have to repeat yourself when you want to export the
+          same options to a configuration file and a command-line interface.
+        </q>
+      </article>
+
+      <article>
+        <h3>configglue - main features</h3>
+        <ul>
+          <li>ini-style configuration files</li>
+          <li>out of the box hierarchical configuration support</li>
+          <li>schema-based configuration</li>
+          <li>command-line integration</li>
+          <li>configuration validation</li>
+          <li>basic types included</li>
+          <li>easy to extend with custom types</li>
+          <li><strong>bonus:</strong> django integration via
+          django-configglue</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>demo</h3>
+        <pre>
+from configglue.schema  import Schema, ɪntOption, BoolOption
+from configglue.glue import configglue
+
+# create the schema
+class MySchema(Schema):
+    foo = IntOption()
+    bar = BoolOption()
+
+# glue everything together
+glue = configglue(MySchema, ['config.ini'])
+        </pre>
+        <pre>
+$ python app.py
+foo option has been configured with value: 0
+$ python app.py --foo=2
+foo option has been configured with value: 2
+        </pre>
+      </article>
+
+      <article>
+        <h3>Want to know more?</h3>
+        <ul>
+          <li>
+            <a href="http://configglue.readthedocs.org">http://configglue.readthedocs.org</a>
+          </li>
+          <li>
+            <a href="http://django-configglue.readthedocs.org">http://django-configglue.readthedocs.org</a>
+          </li>
+        </ul>
+      </article>
+
+      <article class="fill">
+        <h3>
+          Contact me
+        </h3>
+
+        <p>
+          <img src="contact25.jpg" />
+        </p>
+
+        <div id="contact">
+          <dl>
+            <dt>email</dt>
+            <dd>ricardo@kirkner.com.ar</dd>
+
+            <dt>twitter</dt>
+            <dd>@ricardokirkner</dd>
+
+            <dt>irc</dt>
+            <dd>pindonga</dd>
+          </dl>
+        </div>
+
+        <div class="black source">
+            Source: http://github.com/ricardokirkner/configglue-pycon2012
+        </div>
+      </article>
+
+    </section>
+
+  </body>
+</html>
