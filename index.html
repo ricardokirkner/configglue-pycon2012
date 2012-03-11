@@ -96,22 +96,42 @@
       <article>
         <h3>demo</h3>
         <pre>
-from configglue.schema  import Schema, ɪntOption, BoolOption
-from configglue.glue import configglue
+def main(config, opts):
+    # do something
 
-# create the schema
-class MySchema(Schema):
-    foo = IntOption()
-    bar = BoolOption()
+if __name__ == '__main__':
+    from configglue.schema import Schema, IntOption, BoolOption
+    from configglue.glue import configglue
 
-# glue everything together
-glue = configglue(MySchema, ['config.ini'])
+    # create the schema
+    class MySchema(Schema):
+        foo = IntOption()
+        bar = BoolOption()
+
+    # glue everything together
+    glue = configglue(MySchema, ['config.ini'])
+
+    # run
+    main(glue.schema_parser, glue.options)
+        </pre>
+      </article>
+
+      <article>
+        <pre>
+$ cat config.ini
+[__main__]
+bar = true
         </pre>
         <pre>
 $ python app.py
 foo option has been configured with value: 0
+bar option has been configured with value: True
 $ python app.py --foo=2
 foo option has been configured with value: 2
+bar option has been configured with value: True
+$ python app.py --bar=no
+foo option has been configured with value: 0
+bar option has been configured with value: False
         </pre>
       </article>
 
